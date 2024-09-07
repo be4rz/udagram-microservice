@@ -1,0 +1,22 @@
+version: "3"
+services:
+  reverseproxy:
+    build:
+      context: ./udagram-reverseproxy
+    image: reverseproxy
+    platform: linux/amd64
+  backend_user:
+    build:
+      context: ./udagram-api-user
+    image: udagram-api-user
+    platform: linux/amd64
+  backend_feed:
+    build:
+      context: ./udagram-api-feed
+    image: udagram-api-feed
+    platform: linux/amd64
+  frontend:
+    build:
+      context: ./udagram-frontend
+    image: udagram-frontend:local
+    platform: linux/amd64
