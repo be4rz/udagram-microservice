@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reverseproxy
+  labels:
+    service: reverseproxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: reverseproxy
+  template:
+    metadata:
+      labels:
+        service: reverseproxy
+    spec:
+      containers:
+        - name: backend-user
+          image: be4rz58/reverseproxy:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          # resources:
+          #   limits:
+          #     memory: "1024Mi"
+          #     cpu: "500m"
+          #   requests:
+          #     memory: "64Mi"
+          #     cpu: "250m"
